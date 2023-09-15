@@ -65,7 +65,7 @@
             let ball = 0;
             for (let i = 0; i < answer.length; i++) {
                 const index = value.indexOf(answer[i]);
-                if (index > -1) { //일치하지만 자리가 다를 때
+                if (index > -1 && index !== i) { //일치하지만 자리가 다를 때
                     ball += 1;
                 }
                 if (index === i) {//숫자와 자릿수가 같음
