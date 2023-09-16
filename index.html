@@ -42,6 +42,8 @@
             }
             return true;
         }
+        
+        let out = 0;
 
         $form.addEventListener('submit', (event) => {
             event.preventDefault();
@@ -52,7 +54,7 @@
             }
             //입력값 문제없음
             if (answer.join('') === value) {
-                $logs.textContent = '홈런!';
+                $logs.textContent += '홈런!';
                 return;
             }
             if (tries.length >= 9) {
@@ -71,10 +73,19 @@
                 if (index === i) {//숫자와 자릿수가 같음
                     strike += 1;
                 }
+            };
+            //반복문을 마쳤는데 아웃일때
+            if (ball === 0 && strike === 0) {
+                out++;
+                $logs.append(`${value} : ${out}아웃!!!`, document.createElement('br'));
+            } else {
+                $logs.append(`${value} : ${strike} 스트라이크 ${ball} 볼`
+                    , document.createElement('br'));
+            };
+            if (out === 3) {
+                $logs.append(`3아웃 패배! 정답은 ${answer.join('')}`);
+                return;
             }
-            $logs.append(`${value} : ${strike} 스트라이크 ${ball} 볼`
-                , document.createElement('br'));
             tries.push(value);
-            console.log(tries);
         });
     </script>
